@@ -2,7 +2,7 @@
   <a ui-sref=".new"> Add a new post</a>
   <div ui-view="new">
   </div>
-  <span ng-repeat="post in posts">
+  <span ng-repeat="post in posts | orderBy:'date':true">
     <a ui-sref="show({id: post.id})">
       <h2> {{post.title}} </h2>
     </a>
