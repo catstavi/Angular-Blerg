@@ -1,7 +1,8 @@
 <div ng-controller="postsController">
   <a ui-sref=".new"> Add a new post</a>
-  <div ui-view="new">
-  </div>
+    <div ui-view="new">
+    </div>
+
   <span ng-repeat="post in posts | orderBy:'date':true">
     <a ui-sref="show({id: post.id})">
       <h2> {{post.title}} </h2>
@@ -9,7 +10,8 @@
     <span ng-repeat="tag_id in post.tag_ids">
       {{getTagName(tag_id)}}
     </span>
-    <small>{{post.date | date: 'MMM d, y h:mm a'}}</small><br>
+    <small ng-if="post.date">{{ post.date | date: 'MMM d, y h:mm a' }}<br></small>
+    <small ng-if="post.fakeDate">{{ post.fakeDate | date: 'MMM d, y h:mm a' }}<br></small>
     <p>{{post.content}}</p>
     <hr>
   </span>

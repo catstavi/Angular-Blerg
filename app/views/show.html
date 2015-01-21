@@ -1,4 +1,8 @@
 <div ng-controller="postController">
-  post name is {{postName}}
-  id is {{id}}
+  <h2> {{post.title}} </h2>
+  <small> {{post.date | date: 'MMM d, y h:mm a'}}</small><br>
+  <button ng-click="deletePost()">Delete</button>
+  <button ng-click="editPost()">Edit</button>
+
+  <p> {{post.content}} <p>
 </div>

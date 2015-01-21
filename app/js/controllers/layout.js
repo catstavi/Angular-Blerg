@@ -1,7 +1,6 @@
 var homeControllerModule = angular.module('homeControllerModule', []);
 
 homeControllerModule.controller('homeController', ['$scope', '$http', function($scope, $http) {
-  $scope.hello = "Hi";
 
   $scope.tags = [
     { "id": "1a", "name": "2cool4school" },
