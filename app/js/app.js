@@ -1,7 +1,8 @@
 var blahgApp = angular.module('blahgApp', [
   'ui.router',
   'homeControllerModule',
-  'postsControllerModule'
+  'postsControllerModule',
+  'servicesModule'
 ]);
 
 blahgApp.config(function($stateProvider, $urlRouterProvider) {
@@ -26,6 +27,14 @@ blahgApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/post/:id',
     templateUrl: 'app/views/show.html',
   })
-  
+  .state('show.edit', {
+    url: 'post/:id/edit',
+    views: {
+      'edit': {
+        templateUrl: 'app/views/edit.html',
+      }
+    }
+  })
+
   $urlRouterProvider.otherwise('/');
 });

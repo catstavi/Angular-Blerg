@@ -1,18 +1,18 @@
 var postsControllerModule = angular.module('postsControllerModule', []);
 
-postsControllerModule.controller('postsController', ['$scope', '$http',
-  function($scope, $http) {
+postsControllerModule.controller('postsController', ['$scope', '$http', 'apiService',
+  function($scope, $http, apiService) {
     $scope.name = "posts controller yay!"
-    $scope.posts = $http.get('http://localhost:3000/posts').success(function(data) {
+    // $scope.posts = $http.get('http://localhost:3000/posts')
+    apiService.get('posts')
+      .success(function(data) {
       $scope.posts = data;
     });
 }]);
 
 
-
-
-postsControllerModule.controller('newPostController', ['$scope', '$http',
-  function($scope, $http) {
+postsControllerModule.controller('newPostController', ['$scope', '$http', 'apiService',
+  function($scope, $http, apiService) {
     $scope.newPost = {"title": '', "content": '', "tag_ids": [ ]};
 
     $scope.submitNewPost = function() {
@@ -24,25 +24,39 @@ postsControllerModule.controller('newPostController', ['$scope', '$http',
       postToPush.fakeDate = new Date();
       $scope.posts.unshift(postToPush);
       //sends to API
-      $http.post('http://localhost:3000/posts',
-        {
-          post: {
-            title: $scope.newPost.title,
-            content: $scope.newPost.content,
-            date: new Date()
-          }
-        })
+      apiService.postPost($scope.newPost)
     }
 }]);
 
-postsControllerModule.controller('postController', ['$scope', '$http', '$stateParams',
-  function($scope, $http, $stateParams) {
+postsControllerModule.controller('postController', ['$scope', '$http', '$stateParams', 'apiService',
+  function($scope, $http, $stateParams, apiService) {
     $scope.postName = "this is the post view";
     $scope.id = $stateParams.id;
-    $http.get('http://localhost:3000/posts/'+$scope.id).success(function(data) {
-      $scope.post = data;
-    });
+    apiService.get('/posts/'+$scope.id)
+      .success(function(data) {
+        $scope.post = data;
+      });
+
     $scope.deletePost = function() {
-      $http.delete('http://localhost:3000/posts/'+$scope.id)
-      };
-    }]);
+      apiService.delete('posts',$scope.id)
+        .success(function() {
+          window.location="#/posts";
+        });
+    };
+
+}]);
+
+postsControllerModule.controller('editPostController', ['$scope', '$http', '$stateParams', 'apiService',
+  function($scope, $http, $stateParams, apiService) {
+
+    $scope.newPost = {"title": '', "content": '', "tag_ids": [ ]};
+
+
+    $scope.editPost = function() {
+      console.log('posts'+$scope.id)
+      apiService.edit($scope.newPost, 'posts', $scope.id)
+      .success(function() {
+        console.log('meowmeow')
+    });
+  };
+}]);
