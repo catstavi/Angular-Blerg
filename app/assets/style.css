@@ -1,0 +1,12 @@
+body {
+  margin:5vw;
+}
+
+.right_form {
+  background-color: red;
+  float: left;
+}
+
+.post_preview {
+  display: inline-block
+}

@@ -1,10 +1,12 @@
 <div ng-controller="postController">
-  <h2> {{post.title}} </h2>
-  <small> {{post.date | date: 'MMM d, y h:mm a'}}</small><br>
-  <button ng-click="deletePost()">Delete</button>
-  <a ui-sref=".edit"> Edit Post</a>
-  <div ui-view="edit">
+  <div class = "post_preview">
+    <h2> {{post.title}} </h2>
+    <small> {{post.date | date: 'MMM d, y h:mm a'}}</small><br>
+    <button ng-click="deletePost()">Delete</button>
+    <a ui-sref=".edit"> Edit Post</a>
+    <p> {{post.content}} <p>
+  </div>
+  <div class="right_form" ui-view="edit">
   </div>
 
-  <p> {{post.content}} <p>
 </div>
