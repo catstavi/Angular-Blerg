@@ -30,7 +30,6 @@ postsControllerModule.controller('newPostController', ['$scope', '$http', 'apiSe
 
 postsControllerModule.controller('postController', ['$scope', '$http', '$stateParams', 'apiService',
   function($scope, $http, $stateParams, apiService) {
-    $scope.postName = "this is the post view";
     $scope.id = $stateParams.id;
     apiService.get('/posts/'+$scope.id)
       .success(function(data) {
@@ -44,19 +43,22 @@ postsControllerModule.controller('postController', ['$scope', '$http', '$statePa
         });
     };
 
-}]);
-
-postsControllerModule.controller('editPostController', ['$scope', '$http', '$stateParams', 'apiService',
-  function($scope, $http, $stateParams, apiService) {
-
-    $scope.newPost = {"title": '', "content": '', "tag_ids": [ ]};
-
-
     $scope.editPost = function() {
       console.log('posts'+$scope.id)
-      apiService.edit($scope.newPost, 'posts', $scope.id)
+      apiService.edit($scope.post, 'posts', $scope.id)
       .success(function() {
         console.log('meowmeow')
-    });
-  };
+      });
+    }
+
 }]);
+//
+// postsControllerModule.controller('editPostController', ['$scope', '$http', '$stateParams', 'apiService',
+//   function($scope, $http, $stateParams, apiService) {
+//
+//     $scope.thisPost = {"title": '', "content": '', "tag_ids": [ ]};
+//
+//
+//
+//   };
+// }]);
