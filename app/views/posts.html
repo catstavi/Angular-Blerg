@@ -1,9 +1,15 @@
 <div ng-controller="postsController">
-  <a ui-sref=".new"> Add a new post</a>
+  <ng-show="!newPostClicked">
+<!--This is not working yet-->
+    <ng-click="newPostClicked=true">
+      <a ui-sref=".new"> Add a new post</a>
+    </ng-click>
+
+  </ng-hide>
     <div ui-view="new">
     </div>
 
-  <span ng-repeat="post in posts | orderBy:'date':true">
+  <div class= "post_list" ng-repeat="post in posts | orderBy:'date':true">
     <a ui-sref="show({id: post.id})">
       <h2> {{post.title}} </h2>
     </a>
@@ -14,6 +20,6 @@
     <small ng-if="post.fakeDate">{{ post.fakeDate | date: 'MMM d, y h:mm a' }}<br></small>
     <p>{{post.content}}</p>
     <hr>
-  </span>
+  </div>
 
 </div>

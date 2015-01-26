@@ -2,22 +2,23 @@
 <html ng-app="blahgApp">
 <head>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" >
-<link rel="stylesheet" href="app/assets/style.css" media="screen" title="no title" charset="utf-8">
-<script src="assets/ui-bootstrap-0.12.0.min.js"></script>
+<link rel="stylesheet" href="assets/style.css" media="screen" title="no title" charset="utf-8">
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="assets/ui-bootstrap-tpls-0.12.0.min.js"></script>
 <script src="app/js/app.js"></script>
 <script src="app/js/controllers/layout.js"></script>
 <script src="app/js/controllers/posts.js"></script>
 <script src="app/js/services.js"></script>
 </head>
 <body>
-  <div class="header">
-  <a ui-sref=".home">Home</a>
-  <a ui-sref=".posts">Posts</a>
-
-  </div>
-  <div ui-view>
+  <header>
+    <a ui-sref=".home">Home</a> |
+    <a ui-sref=".posts">Posts</a>
+  </header>
+  <div class="wrapper">
+    <div ui-view>
+    </div>
   </div>
 </body>
 </html>

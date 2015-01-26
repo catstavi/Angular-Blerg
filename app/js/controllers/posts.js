@@ -2,8 +2,9 @@ var postsControllerModule = angular.module('postsControllerModule', []);
 
 postsControllerModule.controller('postsController', ['$scope', '$http', 'apiService',
   function($scope, $http, apiService) {
-    $scope.name = "posts controller yay!"
-    // $scope.posts = $http.get('http://localhost:3000/posts')
+    // $scope.currentPath = window.location.hash;
+    // console.log($scope.currentPath);
+    // console.log($scope.currentPath == '#/posts/new-post');
     apiService.get('posts')
       .success(function(data) {
       $scope.posts = data;
@@ -14,8 +15,9 @@ postsControllerModule.controller('postsController', ['$scope', '$http', 'apiServ
 postsControllerModule.controller('newPostController', ['$scope', '$http', 'apiService',
   function($scope, $http, apiService) {
     $scope.newPost = {"title": '', "content": '', "tag_ids": [ ]};
-
+    $scope.currentPath = window.location.hash;
     $scope.submitNewPost = function() {
+
       //sends to the view
       var postToPush = {};
       postToPush.title = $scope.newPost.title;
@@ -24,7 +26,9 @@ postsControllerModule.controller('newPostController', ['$scope', '$http', 'apiSe
       postToPush.fakeDate = new Date();
       $scope.posts.unshift(postToPush);
       //sends to API
-      apiService.postPost($scope.newPost)
+      apiService.postPost($scope.newPost).success(function() {
+        window.location="#/posts";
+      })
     }
 }]);
 

@@ -1,6 +1,14 @@
 <div ng-controller="newPostController">
-  Title: <input type="text" ng-model="newPost.title"/> <br>
-  Content: <textarea type="text" ng-model="newPost.content"></textarea> <br>
-  <button ng-click="submitNewPost()">Submit</button>
-  {{newPost}}
+  <div class="post_form">
+    <br>
+    <h2> Title: <input type="text" ng-model="newPost.title"/> <br> </h2>
+    Content: <textarea type="text" ng-model="newPost.content"></textarea> <br>
+    <button ng-click="submitNewPost()">Submit</button>
+  </div>
+  <div class = "post_preview">
+    preview
+    <h2> {{newPost.title}} </h2>
+    <small> {{post.date | date: 'MMM d, y h:mm a'}}</small><br>
+    <p> {{newPost.content}} <p>
+  </div>
 </div>

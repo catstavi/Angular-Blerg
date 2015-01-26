@@ -1,12 +1,22 @@
-body {
+.wrapper {
   margin:5vw;
 }
 
-.right_form {
-  background-color: red;
+header {
+  background-color: lightblue;
+  padding: 10px;
+  border-bottom: 2px dashed blue;
+}
+
+.post_form {
+  background-color: lightblue;
   float: left;
 }
 
 .post_preview {
   display: inline-block
+}
+
+.post_list {
+  clear: both;
 }
